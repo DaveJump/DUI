@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 require('normalize.css');
 require('styles/Tabs.scss');
 
-import TabsNav from 'TabsNav';
-import TabsContent from 'TabsContent';
-import TabsPanel from 'TabsPanel';
+import TabsNav from './TabsNav';
+import TabsContent from './TabsContent';
+import TabsPanel from './TabsPanel';
 
 class Tabs extends Component {
   static propTypes = {
@@ -49,7 +49,7 @@ class Tabs extends Component {
         prevIndex
       }, () => {
         //更新完后执行props中的回调，暴露当前索引和上一次索引
-        this.props.onChange({ activeIndex, prevIndex });
+        this.props.onChange && this.props.onChange({ activeIndex, prevIndex });
       });
     }
   }

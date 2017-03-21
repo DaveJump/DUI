@@ -18,7 +18,7 @@ export default class TabsNav extends Component {
       let events = {};
       if (!child.props.disabled) {
         events = {
-          onClick: this.props.onTabsClick(order)
+          onClick: this.props.onTabsClick.bind(this, order)
         };
       }
 
@@ -28,7 +28,7 @@ export default class TabsNav extends Component {
       }
 
       return (
-        <li
+        <div
           role="tab"
           key={`tabsNav-${order}`}
           className={tabsNavClassName}
@@ -38,14 +38,14 @@ export default class TabsNav extends Component {
           {...ref}
         >
           {child.props.tabTitle}
-        </li>
+        </div>
       );
     });
   }
   render() {
     return (
       <div className="tabsNavList">
-        <ul>{this.getTabs()}</ul>
+        {this.getTabs()}
       </div>
     );
   }

@@ -14,8 +14,9 @@ export default class TabsPanel extends Component {
     let className = `tabsPanelUnit${isActive ? ' panelIsActive' : ''}`;
     return (
       <div
+        role="tabPanel"
         className={className}
-        aria-hidden={isActive}
+        aria-hidden={!isActive}
       >
         {children}
       </div>

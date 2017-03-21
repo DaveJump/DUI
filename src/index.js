@@ -3,18 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs, TabsPanel } from './DUI/Tabs';
 
-{/*<Tabs defaultActiveIndex="0" onChange={()=>{}}>
-  <TabPanel order="0" tabTitle="11">Lorem ipsum dolor sit amet11111</TabPanel>
-  <TabPanel order="1" tabTitle="22">Lorem ipsum dolor sit amet22222</TabPanel>
-  <TabPanel order="2" tabTitle="33">Lorem ipsum dolor sit amet33333</TabPanel>
-</Tabs>*/}
+require('./style.scss');
+
+const changeCallback = ({ activeIndex, prevIndex }) => {
+  console.log(activeIndex, prevIndex);
+}
 
 const MyTabs = () => (
   <div>
-    <Tabs>
-      <TabsPanel order="0" tabTitle="11">Lorem ipsum dolor sit amet11111</TabsPanel>
-      <TabsPanel order="1" tabTitle="22">Lorem ipsum dolor sit amet22222</TabsPanel>
-      <TabsPanel order="2" tabTitle="33">Lorem ipsum dolor sit amet33333</TabsPanel>
+    <Tabs onChange={changeCallback}>
+      <TabsPanel order="0" tabTitle="BOOKS">Reading "books" makes me happy!</TabsPanel>
+      <TabsPanel order="1" tabTitle="MOVIES">Watching "movies" makes me funny!</TabsPanel>
+      <TabsPanel order="2" tabTitle="MUSICS">Listening "musics" I will not feel bad!</TabsPanel>
     </Tabs>
   </div>
 );

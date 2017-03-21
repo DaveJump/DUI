@@ -21,7 +21,7 @@ class Tabs extends Component {
   };
   constructor(props) {
     super(props);
-    this.handleTabClick = this.handleTabsClick.bind(this);
+    this.handleTabsClick = this.handleTabsClick.bind(this);
     //初始化activeIndex
     let activeIndex;
     if ('activeIndex' in this.props) {
@@ -52,7 +52,7 @@ class Tabs extends Component {
         prevIndex
       }, () => {
         //更新完后执行props中的回调，暴露当前索引和上一次索引
-        this.props.onChange({ activeIndex, prevIndex });
+        this.props.onChange && this.props.onChange({ activeIndex, prevIndex });
       });
     }
   }
