@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-require('normalize.css');
-require('styles/Tabs.scss');
+import 'normalize.css';
+import { classPrefix } from 'styles/Tabs.scss';
 
 import TabsNav from 'components/Tabs/TabsNav';
 import TabsContent from 'components/Tabs/TabsContent';
@@ -8,13 +8,15 @@ import TabsPanel from 'components/Tabs/TabsPanel';
 
 class Tabs extends Component {
   static defaultProps = {
-    defaultActiveIndex: 0
+    defaultActiveIndex: 0,
+    classPrefix
   }
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ]),
+    classPrefix: PropTypes.string,
     defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
     onChange: PropTypes.func
@@ -57,10 +59,11 @@ class Tabs extends Component {
     }
   }
   renderTabsNav() {
-    const { children } = this.props;
+    const { children, classPrefix } = this.props;
     return (
       <TabsNav
         key="tabNavigation"
+        classPrefix={classPrefix}
         activeIndex={this.state.activeIndex}
         onTabsClick={this.handleTabsClick}
         panels={children}
@@ -68,10 +71,11 @@ class Tabs extends Component {
     );
   }
   renderTabsContent() {
-    const { children } = this.props;
+    const { children, classPrefix } = this.props;
     return (
       <TabsContent
         key="panelContainer"
+        classPrefix={classPrefix}
         activeIndex={this.state.activeIndex}
         panels={children}
       />

@@ -12,9 +12,15 @@ const changeCallback = ({ activeIndex, prevIndex }) => {
 const MyTabs = () => (
   <div>
     <Tabs onChange={changeCallback}>
-      <TabsPanel order="0" tabTitle="BOOKS">Reading "books" makes me happy!</TabsPanel>
-      <TabsPanel order="1" tabTitle="MOVIES">Watching "movies" makes me funny!</TabsPanel>
-      <TabsPanel order="2" tabTitle="MUSICS">Listening "musics" I will not feel bad!</TabsPanel>
+      <TabsPanel order="0" tabTitle={<span style={{color: 'red'}}>BOOKS</span>}>
+        Reading "books" makes me happy!
+      </TabsPanel>
+      <TabsPanel order="1" tabTitle={<span style={{color: 'blue'}}>MOVIES</span>}>
+        Watching "movies" makes me funny!
+      </TabsPanel>
+      <TabsPanel order="2" tabTitle={<span style={{color: 'green'}}>MUSICS</span>}>
+        Listening "musics" I will not feel bad!
+      </TabsPanel>
     </Tabs>
   </div>
 );

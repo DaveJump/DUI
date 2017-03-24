@@ -1,5 +1,7 @@
-.DUI-tabs{
-  .tabsNavList{
+$tabs: tabs;
+
+.DUI-#{$tabs}{
+  .#{$tabs}-navList{
     height: 40px;
     box-sizing: border-box;
     border-bottom: 3px solid transparent;
@@ -10,7 +12,7 @@
     align-items: stretch;
     text-align: center;
 
-    div.tabsNavUnit{
+    div.#{$tabs}-navUnit{
       flex-grow: 1;
       box-sizing: border-box;
       width: 0;
@@ -19,22 +21,26 @@
       font-size: 14px;
       padding: 10px 0;
 
-      &.tabIsActive{
+      &.isActive{
         color: #333;
         background: #fff;
         border-bottom: 3px solid #6495ED;
       }
     }
   }
-  .tabsPanels{
+  .#{$tabs}-panelList{
     padding: 15px;
 
-    div.tabsPanelUnit{
+    div.#{$tabs}-panelUnit{
       display: none;
 
-      &.panelIsActive{
+      &.isActive{
         display: block;
       }
     }
   }
+}
+
+:export {
+  classPrefix: $tabs
 }

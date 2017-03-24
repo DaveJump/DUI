@@ -6,15 +6,16 @@ export default class TabsPanel extends Component {
       PropTypes.string,
       PropTypes.node
     ]).isRequired,
+    classPrefix: PropTypes.string,
     order: PropTypes.string.isRequired,
     disable: PropTypes.bool
   };
   render() {
-    const { isActive, children } = this.props;
-    let className = `tabsPanelUnit${isActive ? ' panelIsActive' : ''}`;
+    const { isActive, children, classPrefix } = this.props;
+    let className = `${classPrefix}-panelUnit${isActive ? ' isActive' : ''}`;
     return (
       <div
-        role="tabPanel"
+        role="tabsPanel"
         className={className}
         aria-hidden={!isActive}
       >

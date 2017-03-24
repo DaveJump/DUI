@@ -1,24 +1,29 @@
 import React, { Component, PropTypes } from 'react';
-require('normalize.css');
-require('styles/Tabs.scss');
+import 'normalize.css';
+import { classPrefix } from 'styles/Tabs.scss';
 
 import TabsNav from './TabsNav';
 import TabsContent from './TabsContent';
 import TabsPanel from './TabsPanel';
 
 class Tabs extends Component {
+  static defaultProps = {
+    defaultActiveIndex: 0,
+    classPrefix
+  }
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ]),
-    defaultActiveIndex: PropTypes.number.isRequired,
+    classPrefix: PropTypes.string,
+    defaultActiveIndex: PropTypes.number,
     activeIndex: PropTypes.number,
     onChange: PropTypes.func
   };
   constructor(props) {
     super(props);
-    this.handleTabClick = this.handleTabsClick.bind(this);
+    this.handleTabsClick = this.handleTabsClick.bind(this);
     //初始化activeIndex
     let activeIndex;
     if ('activeIndex' in this.props) {
@@ -54,10 +59,11 @@ class Tabs extends Component {
     }
   }
   renderTabsNav() {
-    const { children } = this.props;
+    const { children, classPrefix } = this.props;
     return (
-      <TabNav
+      <TabsNav
         key="tabNavigation"
+        classPrefix={classPrefix}
         activeIndex={this.state.activeIndex}
         onTabsClick={this.handleTabsClick}
         panels={children}
@@ -65,10 +71,11 @@ class Tabs extends Component {
     );
   }
   renderTabsContent() {
-    const { children } = this.props;
+    const { children, classPrefix } = this.props;
     return (
-      <TabContent
+      <TabsContent
         key="panelContainer"
+        classPrefix={classPrefix}
         activeIndex={this.state.activeIndex}
         panels={children}
       />
@@ -82,9 +89,4 @@ class Tabs extends Component {
       </div>
     );
   }
-}
-
-export {
-  Tabs,
-  TabsPanel
 }

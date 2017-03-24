@@ -3,17 +3,18 @@ import React, { Component, PropTypes } from 'react';
 export default class TabsNav extends Component {
   static propTypes = {
     activeIndex: PropTypes.number,
+    classPrefix: PropTypes.string,
     panels: PropTypes.node
   };
   getTabs() {
-    const { panels, activeIndex } = this.props;
+    const { panels, activeIndex, classPrefix } = this.props;
 
     return React.Children.map(panels, child => {
       if (typeof child == 'undefined') return;
 
       const order = parseInt(child.props.order, 10);
 
-      let tabsNavClassName = `tabsNavUnit${activeIndex === order ? ' tabIsActive' : ''}`;
+      let tabsNavClassName = `${classPrefix}-navUnit${activeIndex === order ? ' isActive' : ''}`;
 
       let events = {};
       if (!child.props.disabled) {
@@ -29,7 +30,7 @@ export default class TabsNav extends Component {
 
       return (
         <div
-          role="tab"
+          role="tabsNav"
           key={`tabsNav-${order}`}
           className={tabsNavClassName}
           aria-disabled={child.props.disabled ? 'true' : 'false'}
@@ -43,8 +44,9 @@ export default class TabsNav extends Component {
     });
   }
   render() {
+    const { classPrefix } = this.props;
     return (
-      <div className="tabsNavList">
+      <div className={`${classPrefix}-navList`}>
         {this.getTabs()}
       </div>
     );
